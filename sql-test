@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+require_relative 'connection'
+
+DB_NAME = 'sql_lessons'
+
+return drop_db(DB_NAME) if !ARGV.include?('createdb') && ARGV.include?('dropdb')
+
+drop_db(DB_NAME) if ARGV.include?('dropdb')
+create_db(DB_NAME) if ARGV.include?('createdb')
+
+connect(DB_NAME)
+
+# run('drop table users')
+# run('drop table mobile_devices')
+
+run_script('create_tables')
+# run_script('insert_values')
+
+p run_with_values('select * from users')
+p run_with_values('select extract(second from created_on) from users')
+p run_with_values('select uid, number from mobile_devices')
+p run_with_values('select user_id from mobile_devices')
+
+
+
+### NOTES
+
+# CREATE TABLE customers(
+#                customer_id INT GENERATED ALWAYS AS IDENTITY,
+
+# B-tree, Hash, GiST, SP-GiST and GIN
