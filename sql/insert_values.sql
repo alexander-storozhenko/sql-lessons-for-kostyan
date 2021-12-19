@@ -1,11 +1,12 @@
 create extension if not exists "uuid-ossp";
+
 ---------------- users ----------------
 
 insert into users(username, password, email, age, created_on)
-values ('bogdan', 'root', 'b@a', 23, current_timestamp);
+values (generate_name(), 'root', 'b@a', 23, current_timestamp);
 
 insert into users(username, password, email, age, created_on)
-values ('vova', 'root', 'c@a', 24, current_timestamp);
+values (generate_name(), 'root', 'c@a', 24, current_timestamp);
 
 ---------------- mobile_devices ----------------
 

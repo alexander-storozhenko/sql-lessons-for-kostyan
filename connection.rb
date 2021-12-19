@@ -19,8 +19,7 @@ end
 def run_console
   loop do
     print '> '
-    cmd = STDIN.gets.chomp
-    run_with_values(cmd)
+    run_with_values(STDIN.gets.chomp)
   rescue => e
     puts e
   end
