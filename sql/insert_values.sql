@@ -1,5 +1,11 @@
 create extension if not exists "uuid-ossp";
 
+create or replace procedure seed()
+    language plpgsql
+as $$
+declare
+begin
+
 ---------------- users ----------------
 
 insert into users(username, password, email, age, created_on)
@@ -40,3 +46,5 @@ values (1, '{}');
 
 insert into events(account_id, data)
 values (1, '{}');
+
+end;$$;

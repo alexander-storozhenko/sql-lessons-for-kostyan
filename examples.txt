@@ -1,0 +1,47 @@
+  -------------- BASE --------------
+
+ select * from users
+ select * from accounts
+ select extract(second from created_on) from users
+ select uid, number from mobile_devices
+
+ -------------- JSON --------------
+
+ select id, data->'brand' from mobile_devices where (data->>'brand') = 'apple';
+ select id, data->'connection_cnt' from mobile_devices where (data->>'connection_cnt')::integer > 10;
+ select id, data->'connection_cnt' from mobile_devices where (data->>'connection_cnt')::integer > 10;
+
+ -------------- Order --------------
+
+ select id from mobile_devices order by id asc
+
+ -------------- Like --------------
+
+ select id from users where email like '%b@a%'
+ select id from users where username like 'bog___'
+ select id from users where username like '_ogda_'
+ select id from users where username like '_og%'
+
+ select id from users where username like 'BOGDA_'
+ select id from users where username ilike 'BOGDA_'
+ select id from users where username not like 'valera'
+ # it equals...
+ select id from users where username ~~ 'BOGDA_'
+ select id from users where username ~~* 'BOGDA_'
+ select id from users where username !~~ 'valera'
+
+ -------------- Join --------------
+
+ run_script_with_values('join')
+
+ ### NOTES
+
+ # CREATE TABLE customers(
+ #                customer_id INT GENERATED ALWAYS AS IDENTITY,
+ # -> return JSON, ->> return text
+ # B-tree, Hash, GiST, SP-GiST and GIN
+ #
+ # having(where after group by), group by, order, like, any(SELECT * FROM mytable WHERE 'Book' = ANY(pub_types);), exists
+ # join
+ # insert update delete
+ # transaction
