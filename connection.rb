@@ -4,10 +4,12 @@ SQL_DIR_NAME = 'sql'
 
 def create_db(db_name)
   `createdb #{db_name}`
+  puts "\e[33mdatabase #{db_name} created\e[0m"
 end
 
 def drop_db(db_name)
   `dropdb #{db_name}`
+  puts "\e[33mdatabase #{db_name} dropped\e[0m"
 end
 
 def connect(db_name)
@@ -22,8 +24,8 @@ def run(sql)
   ActiveRecord::Base.connection.execute(sql)
 end
 
-def run_with_values(sql)
-  ActiveRecord::Base.connection.execute(sql).values
+def run_with_values(sql, print: true)
+  print ? p(run(sql).values) : run(sql).values
 end
 
 def run_script(sql_file)
