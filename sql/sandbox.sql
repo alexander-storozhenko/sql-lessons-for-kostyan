@@ -1,3 +1,7 @@
+
+update users set username = 'new_name' where id = 1;
+delete from users where id = 1;
+
 select *
 from accounts acc
          join users usr on acc.user_id = usr.id
@@ -22,5 +26,5 @@ group by name;
 select name
 from accounts acc
          join users usr on acc.user_id = usr.id
-where (select avg(age) from users) > 22
+where (select avg(age) from users) > 28
 group by name;

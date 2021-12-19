@@ -11,6 +11,10 @@ create_db(DB_NAME) if ARGV.include?('createdb')
 
 connect(DB_NAME)
 
+run_script('create_procedures')
+
+return run_console if ARGV.include?('console') || ARGV.include?('c')
+
 run_script('create_tables')
 run_script('insert_values')
 

@@ -1,3 +1,4 @@
+create extension if not exists "uuid-ossp";
 ---------------- users ----------------
 
 insert into users(username, password, email, age, created_on)
@@ -9,10 +10,10 @@ values ('vova', 'root', 'c@a', 24, current_timestamp);
 ---------------- mobile_devices ----------------
 
 insert into mobile_devices(number, uid, data, created_on)
-values (902394234, 'ab31-knH1-mv21-kkT3', '{"connection_cnt": 11, "brand": "google"}', current_timestamp);
+values (902394234, uuid_generate_v4(), '{"connection_cnt": 11, "brand": "google"}', current_timestamp);
 
 insert into mobile_devices(number, uid, data, created_on)
-values (902394234, 'ab31-knH1-mv21-kkT3', '{"connection_cnt": 4, "brand": "apple"}', current_timestamp);
+values (902394234, uuid_generate_v4(), '{"connection_cnt": 4, "brand": "apple"}', current_timestamp);
 
 ---------------- accounts ----------------
 

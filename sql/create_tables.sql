@@ -11,7 +11,7 @@ create table if not exists users (
 create table if not exists mobile_devices (
     id serial   primary key,
     number      integer        not null,
-    uid         varchar ( 50 ) not null,
+    uid         uuid           not null,
     data        json           default '{}',
     created_on  timestamp      not null
 );

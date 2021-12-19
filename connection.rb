@@ -16,6 +16,16 @@ def connect(db_name)
   ActiveRecord::Base.establish_connection "postgres://localhost/#{db_name}?pool=5"
 end
 
+def run_console
+  loop do
+    print '> '
+    cmd = STDIN.gets.chomp
+    run_with_values(cmd)
+  rescue => e
+    puts e
+  end
+end
+
 def read_sql_file(sql_file)
   File.open("./#{SQL_DIR_NAME}/#{sql_file}.sql", 'r').read
 end
