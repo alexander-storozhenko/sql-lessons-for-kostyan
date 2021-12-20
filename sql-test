@@ -5,16 +5,14 @@ require_relative 'connection'
 DB_NAME = 'sql_lessons'
 
 reset_db(DB_NAME) if ARGV.include?('resetdb')
-return drop_db(DB_NAME) if !ARGV.include?('createdb') && ARGV.include?('dropdb')
 
-drop_db(DB_NAME) if ARGV.include?('dropdb')
+return drop_db(DB_NAME) if ARGV.include?('dropdb')
 create_db(DB_NAME) if ARGV.include?('createdb')
 
 connect(DB_NAME)
 
 run_script('create_procedures')
-run_script('seed')
-
+run_script('create_seed')
 run_script('create_tables')
 
 run('call seed()') if ARGV.include?('seed')

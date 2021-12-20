@@ -2,9 +2,7 @@ create or replace procedure set_spec_name(
     account_id int,
     new_name varchar(50)
 )
-
-    language plpgsql
-as $$
+language plpgsql as $$
 declare
     acc_name varchar(50);
 begin
@@ -20,8 +18,7 @@ begin
     commit;
 end;$$;
 
-create or replace function generate_name()
-    returns varchar AS
+create or replace function generate_name() returns varchar AS
 $BODY$
 declare
     name      varchar(255);
@@ -51,12 +48,11 @@ begin
     return name;
 end;
 $BODY$
-language plpgsql VOLATILE;
+language plpgsql volatile;
 
 
 create or replace procedure set_account_point(acc_id int, value int)
-    language plpgsql
-as $$
+language plpgsql as $$
 declare
     result int;
 
@@ -74,5 +70,4 @@ begin
     end if;
 
 commit;
-
 end;$$;
