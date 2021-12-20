@@ -12,6 +12,11 @@ def drop_db(db_name)
   puts "\e[33mdatabase #{db_name} dropped\e[0m"
 end
 
+def reset_db(db_name)
+  drop_db(db_name)
+  create_db(db_name)
+end
+
 def connect(db_name)
   ActiveRecord::Base.establish_connection "postgres://localhost/#{db_name}?pool=5"
 end

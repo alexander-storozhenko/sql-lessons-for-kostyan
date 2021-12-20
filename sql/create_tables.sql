@@ -20,6 +20,7 @@ create table if not exists accounts(
     id serial   primary key,
     name        varchar(30),
     user_id     integer,
+    points      bigint default 0,
     mobile_device_id integer,
 
     constraint fk_user

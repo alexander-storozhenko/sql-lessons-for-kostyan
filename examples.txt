@@ -9,7 +9,6 @@
 
  select id, data->'brand' from mobile_devices where (data->>'brand') = 'apple';
  select id, data->'connection_cnt' from mobile_devices where (data->>'connection_cnt')::integer > 10;
- select id, data->'connection_cnt' from mobile_devices where (data->>'connection_cnt')::integer > 10;
 
  -------------- Order --------------
 

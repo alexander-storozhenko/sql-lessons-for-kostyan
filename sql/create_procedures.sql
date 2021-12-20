@@ -52,3 +52,27 @@ begin
 end;
 $BODY$
 language plpgsql VOLATILE;
+
+
+create or replace procedure set_account_point(acc_id int, value int)
+    language plpgsql
+as $$
+declare
+    result int;
+
+-- transaction begin
+begin
+
+    update accounts
+    set points = points + value
+    where id = acc_id;
+
+    result := (select points from accounts where accounts.id = acc_id);
+
+    if result < 0 then
+        rollback;
+    end if;
+
+commit;
+
+end;$$;
