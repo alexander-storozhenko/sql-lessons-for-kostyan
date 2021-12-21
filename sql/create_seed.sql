@@ -46,7 +46,7 @@ insert into events(account_id, data)
 values (1, '{"type": "0xF0"}');
 
 insert into events(account_id, data)
-values (1, '{"type": "0xAA"}');
+values (4, '{"type": "0xAA"}');
 
 insert into events(account_id, data)
 values (2, '{}');

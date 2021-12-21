@@ -1,5 +1,5 @@
 create table if not exists users (
-        id serial   primary key,
+        id          serial   primary key,
         username    varchar ( 50 )  not null,
         password    varchar ( 50 )  not null,
         email       varchar ( 255 ) not null,
@@ -12,7 +12,7 @@ create table if not exists mobile_devices (
     id serial   primary key,
     number      integer        not null,
     uid         uuid           not null,
-    data        json           default '{}',
+    data        json           default '{"connection_cnt": 11}',
     created_on  timestamp      not null
 );
 
@@ -36,12 +36,12 @@ create table if not exists accounts(
 
 create table if not exists events(
     id serial   primary key,
-    account_id  integer     not null,
-    data        json
+    account_id  integer not null,
+    data        json,
 
---     constraint fk_account
---         foreign key(account_id)
---             references accounts(id)
+    constraint fk_account
+        foreign key(account_id)
+            references accounts(id)
 );
 
 create index if not exists mobile_devices_connection_cnt ON mobile_devices (((data ->> 'connection_cnt')::integer));
