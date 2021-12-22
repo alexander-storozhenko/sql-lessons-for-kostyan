@@ -44,3 +44,27 @@
  # join
  # insert update delete
  # transaction
+
+ select id, name from accounts  where name = 'acc-name1' order by id desc
+
+ select acc.name from accounts acc
+        join users u on u.id = acc.user_id and u.username = acc.name
+    group by acc.name
+
+ select ev.id, acc.id, acc.name from events ev
+        join accounts acc on acc.id = ev.account_id
+        join mobile_devices md on acc.mobile_device_id = md.id and (md.data ->> 'connection_cnt')::int > 10
+
+ select md.id
+    from mobile_devices md
+    where (
+              select count(*)
+              from accounts acc
+              where md.id = acc.mobile_device_id and (md.data ->> 'brand') = 'google'
+          ) > 0
+
+ select usr.username, acc.name
+   from users usr
+            join accounts acc on usr.id = acc.user_id
+            join mobile_devices md on acc.mobile_device_id = md.id
+   where (md.data ->> 'brand') = 'apple';
